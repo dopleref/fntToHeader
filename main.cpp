@@ -102,6 +102,7 @@ int main(int argc, char* argv[])
         "yoffset",
         "xadvance"
     };
+    int value;
     while (!fin.eof() && str != "kernings") {
         fin >> str;
         if (str.find(charGoals[i]) != std::string::npos) {
@@ -114,7 +115,17 @@ int main(int argc, char* argv[])
                 length = charGoals[i].length() + 1;
                 str.erase(0, length);
                 //cout << str << endl;
-                fout << str;
+                if (i == 1) {
+                    value = std::stoi(str);
+                    if (value > 1000) {
+                        value = value - 0x410 + 0xC0;
+                    }
+                    fout << value;
+                }
+                else {
+                    fout << str;
+                }
+
                 if (i < 8) {
                     fout << ", ";
                 }
@@ -158,7 +169,17 @@ int main(int argc, char* argv[])
                 length = kerningGoals[i].length() + 1;
                 str.erase(0, length);
                 //cout << str << endl;
-                fout << str;
+                //fout << str;
+                if (i == 1 || i == 2) {
+                    value = std::stoi(str);
+                    if (value > 1000) {
+                        value = value - 0x410 + 0xC0;
+                    }
+                    fout << value;
+                }
+                else {
+                    fout << str;
+                }
                 if (i < 3) {
                     fout << ", ";
                 }
