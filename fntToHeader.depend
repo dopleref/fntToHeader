@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1532411180 source:d:\chaikov\projects\fnttoheader\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	<string>
+
